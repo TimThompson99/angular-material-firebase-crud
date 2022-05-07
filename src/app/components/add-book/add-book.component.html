@@ -1,6 +1,6 @@
 <!-- Title group  -->
 <div class="title-group">
-  <h1 class="mat-h1">Add Book</h1>
+  <h1 class="mat-h1">Add Wine</h1>
   <mat-divider fxFlex="1 0"></mat-divider>
 </div>
 
@@ -17,9 +17,9 @@
       <div class="controlers-wrapper">
         <!-- Book name -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Book name" formControlName="book_name" />
+          <input matInput placeholder="Wine name" formControlName="book_name" />
           <mat-error *ngIf="handleError('book_name', 'required')">
-            You must provide a<strong>book name</strong>
+            You must provide a<strong>wine name</strong>
           </mat-error>
         </mat-form-field>
 
@@ -27,10 +27,10 @@
         <mat-form-field class="example-full-width">
           <input
             matInput
-            placeholder="ISBN-10"
+            placeholder="Year"
             formControlName="isbn_10"
             pattern="[0-9]*"
-            minlength="10"
+            minlength="4"
             maxlength="10"
           />
           <mat-error *ngIf="handleError('isbn_10', 'required')">
@@ -62,7 +62,7 @@
             matInput
             readonly
             [matDatepicker]="picker"
-            placeholder="Publication date"
+            placeholder="Added On"
             formControlName="publication_date"
             (dateChange)="formatDate($event)"
           />
@@ -83,16 +83,16 @@
       <div class="controlers-wrapper">
         <!-- Book binding -->
         <mat-form-field>
-          <mat-label>Binding type</mat-label>
-          <mat-select formControlName="binding_type">
+          <mat-label>Rating</mat-label>
+          <mat-select formControlName="rating_type">
             <mat-option
-              [value]="bindingType"
-              *ngFor="let bindingType of BindingType"
-              >{{ bindingType }}</mat-option
+              [value]="ratingType"
+              *ngFor="let ratingType of RatingType"
+              >{{ ratingType }}</mat-option
             >
           </mat-select>
-          <mat-error *ngIf="handleError('binding_type', 'required')">
-            Binding type is required
+          <mat-error *ngIf="handleError('rating_type', 'required')">
+            Rating is required
           </mat-error>
         </mat-form-field>
 
@@ -107,34 +107,6 @@
             <mat-radio-button value="No">No</mat-radio-button>
           </mat-radio-group>
         </div>
-
-        <!-- Add languages -->
-        <mat-form-field class="multiple-items">
-          <mat-chip-list #chipList>
-            <mat-chip
-              *ngFor="let lang of languageArray"
-              [selectable]="selectable"
-              [removable]="removable"
-              (removed)="remove(lang)"
-            >
-              {{ lang.name }}
-              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-            </mat-chip>
-            <input
-              placeholder="Add languages"
-              [matChipInputFor]="chipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="add($event)"
-            />
-          </mat-chip-list>
-          <i
-            class="material-icons tooltip-info"
-            matTooltip="Enter item name and press enter to add multiple items"
-          >
-            info
-          </i>
-        </mat-form-field>
       </div>
     </mat-card>
 

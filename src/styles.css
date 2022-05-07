@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 html,
 body {
   height: 100%;
@@ -8,8 +8,8 @@ body {
   margin: 0;
   font-family: "Roboto", sans-serif;
 }
-.header {
-  justify-content: space-between;
+.spacer {
+  flex: 1 1 0;
 }
 .user-profile {
   margin-left: 15px;
@@ -44,7 +44,6 @@ body {
   padding: 25px 40px 0;
 }
 .mat-sidenav {
-  background-color: #f2f2f2;
   width: 250px;
 }
 .header {

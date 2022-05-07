@@ -27,9 +27,8 @@ export class BookService {
         isbn_10: book.isbn_10,
         author_name: book.author_name,
         publication_date: book.publication_date,
-        binding_type: book.binding_type,
-        in_stock: book.in_stock,
-        languages: book.languages,
+        binding_type: book.rating_type,
+        in_stock: book.in_stock
       })
       .catch((error) => {
         this.errorMgmt(error);
@@ -56,9 +55,8 @@ export class BookService {
         isbn_10: book.isbn_10,
         author_name: book.author_name,
         publication_date: book.publication_date,
-        binding_type: book.binding_type,
-        in_stock: book.in_stock,
-        languages: book.languages,
+        rating_type: book.rating_type,
+        in_stock: book.in_stock
       })
       .catch((error) => {
         this.errorMgmt(error);

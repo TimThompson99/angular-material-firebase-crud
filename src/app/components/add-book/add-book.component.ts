@@ -24,12 +24,12 @@ export class AddBookComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedBindingType: string;
   bookForm: FormGroup;
-  BindingType: any = [
-    'Paperback',
-    'Case binding',
-    'Perfect binding',
-    'Saddle stitch binding',
-    'Spiral binding',
+  RatingType: any = [
+    'Swill',
+    'Budget Balla',
+    'Hidden Gem',
+    'It\'s A Talker',
+    'Todd Approved',
   ];
 
   ngOnInit() {
@@ -54,9 +54,8 @@ export class AddBookComponent implements OnInit {
       isbn_10: ['', [Validators.required]],
       author_name: ['', [Validators.required]],
       publication_date: ['', [Validators.required]],
-      binding_type: ['', [Validators.required]],
-      in_stock: ['Yes'],
-      languages: [this.languageArray],
+      rating_type: ['', [Validators.required]],
+      in_stock: ['Yes']
     });
   }
 
