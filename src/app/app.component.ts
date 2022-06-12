@@ -1,4 +1,4 @@
-import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
+import { Component, ViewChild, HostListener, OnInit, ElementRef } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -9,9 +9,11 @@ import { MatSidenav } from '@angular/material/sidenav';
 
 export class AppComponent {
   opened = true;
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
+  @ViewChild('IntroVideo', {static: true}) introVideo: ElementRef;
 
   ngOnInit() {
+    this.introVideo.nativeElement.play()
     if (window.innerWidth < 768) {
       this.sidenav.fixedTopGap = 55;
       this.opened = false;
@@ -30,6 +32,11 @@ export class AppComponent {
       this.sidenav.fixedTopGap = 55;
       this.opened = true;
     }
+  }
+
+  public hideVideo() {
+    console.log('hiding');
+    this.introVideo.nativeElement.display = 'none';
   }
 
   isBiggerScreen() {

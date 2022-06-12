@@ -1,4 +1,5 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+
 html,
 body {
   height: 100%;
@@ -51,6 +52,9 @@ body {
   position: -webkit-sticky;
   top: 0;
   z-index: 1000;
+}
+.mat-toolbar.mat-primary {
+  background: #800020 !important;
 }
 mat-sidenav mat-icon {
   margin-right: 12px;

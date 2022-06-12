@@ -1,11 +1,11 @@
 <!-- Toolbar -->
 <mat-toolbar color="primary" class="header">
-  <img src="/assets/logo.png" />
-  <div>BROKEN CORKS</div>
-  <span class="spacer"></span>
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
+  <span class="spacer"></span>  
+  <div>BROKEN CORKS</div>
+  <span class="spacer"></span>
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -15,20 +15,31 @@
     [mode]="isBiggerScreen() ? 'over' : 'side'"
     [(opened)]="opened"
     [fixedInViewport]="true"
-    [fixedTopGap]
-  >
+    [fixedTopGap]>
+    <img class="logo" src="/assets/logo.png" />    
     <mat-nav-list>
-      <a mat-list-item routerLinkActive="active" routerLink="/add-book">
+      <!--<a mat-list-item routerLinkActive="active" routerLink="/add-book">
         <mat-icon>add</mat-icon> Log Wine
       </a>
       <a mat-list-item routerLinkActive="active" routerLink="/books-list">
         <mat-icon>format_list_bulleted</mat-icon> View Wines
+      </a>-->
+      <a mat-list-item routerLinkActive="active" routerLink="/found">
+        <mat-icon>query_stats</mat-icon> Found Golf Ball
       </a>
+      <a mat-list-item routerLink="/found">
+        <mat-icon>wine_bar</mat-icon> Wines
+      </a>      
     </mat-nav-list>
   </mat-sidenav>
 
   <!-- Main content -->
   <mat-sidenav-content>
     <router-outlet></router-outlet>
+    <video #IntroVideo muted onended="hideVideo()">
+      <source src="assets/BRKIntro.mp4">
+      <source src="assets/BRKIntro.webm">
+      Your browser does not support his video
+    </video>
   </mat-sidenav-content>
 </mat-sidenav-container>

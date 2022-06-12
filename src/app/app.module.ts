@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FoundBallComponent } from './components/found-ball/found-ball.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddBookComponent,
     EditBookComponent,
     BookListComponent,
+    FoundBallComponent,
   ],
   imports: [
     BrowserModule,

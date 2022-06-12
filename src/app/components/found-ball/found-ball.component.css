@@ -1,0 +1,29 @@
+section {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mat-card-image {
+    max-height: 500px !important;
+    background-size: auto;
+}
+.avatar {
+    background-image: url('/assets/UserIcon.png');
+    background-size: cover;
+}
+
+.todd {
+    background-image: url('/assets/ToddProfile.jpg');
+}
+.leanne {
+    background-image: url('/assets/Leanne.jpg');
+}
+.jer {
+    background-image: url('/assets/JerProfile.jpg');
+}
+.kierst {
+    background-image: url('/assets/Kiersten.jpeg');
+}
