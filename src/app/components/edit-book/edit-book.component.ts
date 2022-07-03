@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { BookService } from './../../shared/book.service';
+import { WineService } from '../../shared/wine.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 export interface Language {
@@ -40,7 +40,7 @@ export class EditBookComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private location: Location,
-    private bookApi: BookService,
+    private bookApi: WineService,
     private actRoute: ActivatedRoute,
     private router: Router
   ) {

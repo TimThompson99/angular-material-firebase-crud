@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="hero">
+      <video #IntroVideo muted autoplay muted="true" playsinline>
+        <source src="assets/BRKVideo.webm">      
+        Your browser does not support his video
+      </video>
+      <img class="mobile-image" src="assets/BrokenCorksLogo.png"/>
+      <form [formGroup]="subForm" (ngSubmit)="checkForm()">
+      <div class="signup-form">
+        <input type="email" id="emailControl" name="emailControl" class="required email" formControlName="emailControl" placeholder="Enter Your Email Address"/>
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_8f8c8bc0b3105da17f8a9f9a1_caa2bddc83" tabindex="-1" formControlName="hidden" value=""></div>  
+        <button type="submit" class="subscribe-button" [disabled]="!subForm.valid">Subscribe</button>
+        <div class="error">
+        <span *ngIf="!emailControl?.valid && (emailControl?.dirty || emailControl?.touched)">
+          <div [hidden]="!emailControl.errors.required">Email is required</div>
+          <div [hidden]="!emailControl.errors.email">Invalid Email</div>
+          <div [hidden]="this.error == ''"></div>
+        </span>    
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>   

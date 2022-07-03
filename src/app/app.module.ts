@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
-import { BookListComponent } from './components/book-list/book-list.component';
+import { WineListComponent } from './components/wine-list/wine-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularMaterialModule } from './material.module';
@@ -15,6 +15,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FoundBallComponent } from './components/found-ball/found-ball.component';
+import { LottieModule } from 'ngx-lottie';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
+
+export function playerFactory(): any {
+  return import('lottie-web')
+}
 
 
 @NgModule({
@@ -22,18 +29,22 @@ import { FoundBallComponent } from './components/found-ball/found-ball.component
     AppComponent,
     AddBookComponent,
     EditBookComponent,
-    BookListComponent,
+    WineListComponent,
     FoundBallComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule,
+    LottieModule.forRoot({player: playerFactory})
   ],
   providers: [],
   bootstrap: [AppComponent],

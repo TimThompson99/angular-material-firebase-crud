@@ -1,0 +1,39 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "dist/broken-corks",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [ {
+      "source": "**/*.@(eot|otf|ttf|ttc|woff|wof2|font.css)",
+      "headers": [ {
+        "key": "Cache-Control",
+        "value": "max-age=31536000"
+      } ]
+    }, {
+      "source": "**/*.@(jpg|jpeg|gif|png|webp)",
+      "headers": [ {
+        "key": "Cache-Control",
+        "value": "max-age=31536000"
+      } ]
+    }, {
+      "source": "**/*.@(js)",
+      "headers": [ {
+        "key": "Cache-Control",
+        "value": "max-age=3600"
+      } ]
+    }
+    ]
+  }
+}

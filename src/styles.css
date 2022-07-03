@@ -7,7 +7,7 @@ body {
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .spacer {
   flex: 1 1 0;
@@ -31,21 +31,16 @@ body {
   margin-left: 15px;
   cursor: pointer;
 }
-.hamburger {
-  visibility: hidden !important;
-}
 .mat-sidenav,
 .mat-sidenav-content {
-  padding: 15px;
+  padding: 0px;
 }
 .mat-list-item.active {
   background: rgba(0, 0, 0, 0.04);
 }
-.mat-sidenav-content {
-  padding: 25px 40px 0;
-}
 .mat-sidenav {
   width: 250px;
+  padding-top: 70px;
 }
 .header {
   position: sticky;
@@ -126,9 +121,6 @@ body .push-right {
   .inner-wrapper mat-card {
     width: 100%;
   }
-  .mat-sidenav-content {
-    padding: 20px 20px 0;
-  }
   .misc-bottom-padding mat-label {
     display: block;
     padding-bottom: 10px;
@@ -144,9 +136,6 @@ body .push-right {
   .nav-tool-items {
     margin-right: 0;
   }
-  .hamburger {
-    visibility: visible !important;
-  }
 }
 html,
 body {
@@ -154,5 +143,5 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
 }

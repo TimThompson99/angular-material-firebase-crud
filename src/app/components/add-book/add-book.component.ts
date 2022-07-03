@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { BookService } from './../../shared/book.service';
+import { WineService } from '../../shared/wine.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 export interface Language {
@@ -33,11 +33,11 @@ export class AddBookComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.bookApi.GetBookList();
+    this.wineApi.GetBookList();
     this.submitBookForm();
   }
 
-  constructor(public fb: FormBuilder, private bookApi: BookService) {}
+  constructor(public fb: FormBuilder, private wineApi: WineService) {}
 
   /* Remove dynamic languages */
   remove(language: Language): void {
@@ -98,7 +98,7 @@ export class AddBookComponent implements OnInit {
   /* Submit book */
   submitBook() {
     if (this.bookForm.valid) {
-      this.bookApi.AddBook(this.bookForm.value);
+      this.wineApi.AddBook(this.bookForm.value);
       this.resetForm();
     }
   }
