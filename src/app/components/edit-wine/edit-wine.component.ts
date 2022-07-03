@@ -11,11 +11,11 @@ export interface Language {
 }
 
 @Component({
-  selector: 'app-edit-book',
-  templateUrl: './edit-book.component.html',
-  styleUrls: ['./edit-book.component.css'],
+  selector: 'app-edit-wine',
+  templateUrl: './edit-wine.component.html',
+  styleUrls: ['./edit-wine.component.css'],
 })
-export class EditBookComponent implements OnInit {
+export class EditWineComponent implements OnInit {
   visible = true;
   selectable = true;
   removable = true;
@@ -24,17 +24,23 @@ export class EditBookComponent implements OnInit {
   @ViewChild('chipList') chipList;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedBindingType: string;
-  editBookForm: FormGroup;
-  BindingType: any = [
-    'Paperback',
-    'Case binding',
-    'Perfect binding',
-    'Saddle stitch binding',
-    'Spiral binding',
+  editWineForm: FormGroup;
+  RatingType: any = [
+    'Red Solo Cup With Ice',
+    'Budget Balla',
+    'Hidden Gem',
+    'It\'s A Talker',
+    'Todd Approved',
+    'Two Pinkys Up'
   ];
 
   ngOnInit() {
-    this.updateBookForm();
+    const validPath = this.actRoute.snapshot.paramMap.get('id');
+    if (validPath !== undefined) {
+      this.updateWineForm();
+    } else {
+      this.router.navigate(['wine-list']);
+    }
   }
 
   constructor(
@@ -50,20 +56,23 @@ export class EditBookComponent implements OnInit {
       .valueChanges()
       .subscribe((data) => {
         this.languageArray = data.languages;
-        this.editBookForm.setValue(data);
+        this.editWineForm.setValue(data);
       });
   }
 
   /* Update form */
-  updateBookForm() {
-    this.editBookForm = this.fb.group({
-      book_name: ['', [Validators.required]],
-      isbn_10: ['', [Validators.required]],
-      author_name: ['', [Validators.required]],
-      publication_date: ['', [Validators.required]],
-      binding_type: ['', [Validators.required]],
-      in_stock: ['Yes'],
-      languages: [''],
+  updateWineForm() {
+    this.editWineForm = this.fb.group({
+      supplier_name: ['', [Validators.required]],
+      product_name: ['', [Validators.required]],
+      cases: ['', [Validators.required]],
+      bottles_per_case: ['', [Validators.required]],
+      cost_per_case: ['', [Validators.required]],
+      cost_per_bottle: ['', [Validators.required]],
+      retail_cost_per_case: ['', [Validators.required]],
+      retail_cost_per_bottle: ['', [Validators.required]],  
+      rating_type: [''], 
+      available: ['Yes']
     });
   }
 
@@ -91,16 +100,8 @@ export class EditBookComponent implements OnInit {
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
-    return this.editBookForm.controls[controlName].hasError(errorName);
+    return this.editWineForm.controls[controlName].hasError(errorName);
   };
-
-  /* Date */
-  formatDate(e) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.editBookForm.get('publication_date').setValue(convertDate, {
-      onlyself: true,
-    });
-  }
 
   /* Go to previous page */
   goBack() {
@@ -108,11 +109,11 @@ export class EditBookComponent implements OnInit {
   }
 
   /* Submit book */
-  updateBook() {
+  updateWine() {
     var id = this.actRoute.snapshot.paramMap.get('id');
     if (window.confirm('Are you sure you wanna update?')) {
-      this.wineApi.UpdateWine(id, this.editBookForm.value);
-      this.router.navigate(['books-list']);
+      this.wineApi.UpdateWine(id, this.editWineForm.value);
+      this.router.navigate(['wine-list']);
     }
   }
 }
