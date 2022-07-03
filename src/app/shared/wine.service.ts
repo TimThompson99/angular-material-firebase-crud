@@ -14,49 +14,57 @@ import {
   providedIn: 'root',
 })
 export class WineService {
-  booksRef: AngularFireList<any>;
-  bookRef: AngularFireObject<any>;
+  winesRef: AngularFireList<any>;
+  wineRef: AngularFireObject<any>;
 
   constructor(private db: AngularFireDatabase) {}
 
   /* Create book */
-  AddBook(book: Wine) {
-    this.booksRef
+  AddWine(wine: Wine) {
+    this.winesRef
       .push({
-        book_name: book.book_name,
-        isbn_10: book.isbn_10,
-        author_name: book.author_name,
-        publication_date: book.publication_date,
-        binding_type: book.rating_type,
-        in_stock: book.in_stock
-      })
+        supplier_name: wine.supplier_name,
+        product_name: wine.product_name,
+        cases: wine.cases,
+        bottles_per_case: wine.bottles_per_case,
+        cost_per_case: wine.cost_per_case,
+        cost_per_bottle: wine.cost_per_bottle,
+        retail_cost_per_case: wine.retail_cost_per_case,
+        retail_cost_per_bottle: wine.cost_per_bottle,
+        rating_type: wine.rating_type,        
+        available: wine.available
+      })    
       .catch((error) => {
         this.errorMgmt(error);
       });
   }
 
   /* Get book */
-  GetBook(id: string) {
-    this.bookRef = this.db.object('wine-list/' + id);
-    return this.bookRef;
+  GetWine(id: string) {
+    this.wineRef = this.db.object('wine-list/' + id);
+    return this.wineRef;
   }
 
   /* Get book list */
-  GetBookList() {
-    this.booksRef = this.db.list('wine-list');
-    return this.booksRef;
+  GetWineList() {
+    this.winesRef = this.db.list('wine-list');
+    return this.winesRef;
   }
 
   /* Update book */
-  UpdateBook(id, book: Wine) {
-    this.bookRef
+  UpdateWine(id, wine: Wine) {
+    this.wineRef
       .update({
-        book_name: book.book_name,
-        isbn_10: book.isbn_10,
-        author_name: book.author_name,
-        publication_date: book.publication_date,
-        rating_type: book.rating_type,
-        in_stock: book.in_stock
+        supplier_name: wine.supplier_name,
+        product_name: wine.product_name,
+        cases: wine.cases,
+        bottles_per_case: wine.bottles_per_case,
+        cost_per_case: wine.cost_per_case,
+        cost_per_bottle: wine.cost_per_bottle,
+        retail_cost_per_case: wine.retail_cost_per_case,
+        retail_cost_per_bottle: wine.cost_per_bottle,
+        rating_type: wine.rating_type,
+        available: wine.available
       })
       .catch((error) => {
         this.errorMgmt(error);
@@ -64,9 +72,9 @@ export class WineService {
   }
 
   /* Delete book */
-  DeleteBook(id: string) {
-    this.bookRef = this.db.object('wine-list/' + id);
-    this.bookRef.remove().catch((error) => {
+  DeleteWine(id: string) {
+    this.wineRef = this.db.object('wine-list/' + id);
+    this.wineRef.remove().catch((error) => {
       this.errorMgmt(error);
     });
   }

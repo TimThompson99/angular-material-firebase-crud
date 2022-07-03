@@ -1,0 +1,128 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">Add Wine</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Book form -->
+<div class="inner-wrapper">
+  <form
+    [formGroup]="wineForm"
+    (ngSubmit)="submitBook()"
+    #resetBookForm="ngForm"
+    novalidate
+  >
+    <!-- Left block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Supplier name -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Supplier name" formControlName="supplier_name" />
+          <mat-error *ngIf="handleError('supplier_name', 'required')">
+            You must provide a<strong>supplier</strong>
+          </mat-error>
+        </mat-form-field>
+        
+        <!-- Wine name -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Wine name" formControlName="product_name" />
+          <mat-error *ngIf="handleError('product_name', 'required')">
+            You must provide a<strong>product name</strong>
+          </mat-error>
+        </mat-form-field>    
+        
+        <!-- Case Count -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Cases on hand" formControlName="cases" />
+          <mat-error *ngIf="handleError('cases', 'required')">
+            You must provide number of<strong>cases</strong>
+          </mat-error>
+        </mat-form-field>      
+
+        <!-- Case Count -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Bottles per case" formControlName="bottles_per_case"/>
+          <mat-error *ngIf="handleError('bottles_per_case', 'required')">
+            You must provide <strong>bottles per case</strong>
+          </mat-error>
+        </mat-form-field>       
+
+      </div>
+    </mat-card>
+
+    <!-- Right block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Cost Per Case -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Cost per case" formControlName="cost_per_case"/>
+          <mat-error *ngIf="handleError('cost_per_case', 'required')">
+            You must provide <strong>cost per case</strong>
+          </mat-error>
+        </mat-form-field> 
+        
+        <!-- Cost Per Bottle -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Cost per bottle" formControlName="cost_per_bottle"/>
+          <mat-error *ngIf="handleError('cost_per_bottle', 'required')">
+            You must provide <strong>cost per bottle</strong>
+          </mat-error>
+        </mat-form-field>     
+        
+       <!-- Cost Per Case -->
+       <mat-form-field class="full-width">
+        <input matInput placeholder="Retail cost per case" formControlName="retail_cost_per_case"/>
+        <mat-error *ngIf="handleError('retail_cost_per_case', 'required')">
+          You must provide <strong>retail cost per case</strong>
+        </mat-error>
+      </mat-form-field> 
+      
+      <!-- Cost Per Bottle -->
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Retail cost per bottle" formControlName="retail_cost_per_bottle"/>
+        <mat-error *ngIf="handleError('retail_cost_per_bottle', 'required')">
+          You must provide <strong>retail cost per bottle</strong>
+        </mat-error>
+      </mat-form-field>         
+        <!-- Wine binding -->
+        <mat-form-field>
+          <mat-label>Rating</mat-label>
+          <mat-select formControlName="rating_type">
+            <mat-option
+              [value]="ratingType"
+              *ngFor="let ratingType of RatingType"
+              >{{ ratingType }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="handleError('rating_type', 'required')">
+            Rating is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Available -->
+        <div class="misc-bottom-padding">
+          <mat-label>Available in stock: </mat-label>
+          <mat-radio-group
+            aria-label="Select an option"
+            formControlName="available"
+          >
+            <mat-radio-button value="Yes">Yes</mat-radio-button>
+            <mat-radio-button value="No">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Submit & Reset -->
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-flat-button color="warn">Submit</button>
+          <button mat-flat-button color="war" (click)="resetForm()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>

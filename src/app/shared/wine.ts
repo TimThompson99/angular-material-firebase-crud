@@ -1,9 +1,13 @@
 export interface Wine {
   $key: string;
-  book_name: string;
-  isbn_10: number;
-  author_name: string;
-  publication_date: Date;
-  rating_type: string;
-  in_stock: string;
+  supplier_name: string;
+  product_name: string;
+  cases: number
+  bottles_per_case: number;
+  cost_per_case: number
+  cost_per_bottle: number;
+  retail_cost_per_case: number;
+  retail_cost_per_bottle: number;
+  rating_type: string,  
+  available: string;
 }

@@ -9,11 +9,11 @@ export interface Language {
 }
 
 @Component({
-  selector: 'app-add-book',
-  templateUrl: './add-book.component.html',
-  styleUrls: ['./add-book.component.css'],
+  selector: 'app-add-wine',
+  templateUrl: './add-wine.component.html',
+  styleUrls: ['./add-wine.component.css'],
 })
-export class AddBookComponent implements OnInit {
+export class AddWineComponent implements OnInit {
   visible = true;
   selectable = true;
   removable = true;
@@ -23,17 +23,18 @@ export class AddBookComponent implements OnInit {
   @ViewChild('resetBookForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedBindingType: string;
-  bookForm: FormGroup;
+  wineForm: FormGroup;
   RatingType: any = [
-    'Swill',
+    'Red Solo Cup With Ice',
     'Budget Balla',
     'Hidden Gem',
     'It\'s A Talker',
     'Todd Approved',
+    'Two Pinkys Up'
   ];
 
   ngOnInit() {
-    this.wineApi.GetBookList();
+    this.wineApi.GetWineList();
     this.submitBookForm();
   }
 
@@ -49,19 +50,23 @@ export class AddBookComponent implements OnInit {
 
   /* Reactive book form */
   submitBookForm() {
-    this.bookForm = this.fb.group({
-      book_name: ['', [Validators.required]],
-      isbn_10: ['', [Validators.required]],
-      author_name: ['', [Validators.required]],
-      publication_date: ['', [Validators.required]],
-      rating_type: ['', [Validators.required]],
-      in_stock: ['Yes']
+    this.wineForm = this.fb.group({ 
+      supplier_name: ['', [Validators.required]],
+      product_name: ['', [Validators.required]],
+      cases: ['', [Validators.required]],
+      bottles_per_case: ['', [Validators.required]],
+      cost_per_case: ['', [Validators.required]],
+      cost_per_bottle: ['', [Validators.required]],
+      retail_cost_per_case: ['', [Validators.required]],
+      retail_cost_per_bottle: ['', [Validators.required]],  
+      rating_type: [''], 
+      available: ['Yes']
     });
   }
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
-    return this.bookForm.controls[controlName].hasError(errorName);
+    return this.wineForm.controls[controlName].hasError(errorName);
   };
 
   /* Add dynamic languages */
@@ -78,27 +83,19 @@ export class AddBookComponent implements OnInit {
     }
   }
 
-  /* Date */
-  formatDate(e) {
-    var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.bookForm.get('publication_date').setValue(convertDate, {
-      onlyself: true,
-    });
-  }
-
   /* Reset form */
   resetForm() {
     this.languageArray = [];
-    this.bookForm.reset();
-    Object.keys(this.bookForm.controls).forEach((key) => {
-      this.bookForm.controls[key].setErrors(null);
+    this.wineForm.reset();
+    Object.keys(this.wineForm.controls).forEach((key) => {
+      this.wineForm.controls[key].setErrors(null);
     });
   }
 
   /* Submit book */
   submitBook() {
-    if (this.bookForm.valid) {
-      this.wineApi.AddBook(this.bookForm.value);
+    if (this.wineForm.valid) {
+      this.wineApi.AddWine(this.wineForm.value);
       this.resetForm();
     }
   }

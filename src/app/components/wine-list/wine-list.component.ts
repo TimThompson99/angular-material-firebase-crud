@@ -12,28 +12,31 @@ import { WineService } from '../../shared/wine.service';
 export class WineListComponent {
   dataSource: MatTableDataSource<Wine>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  BookData: any = [];
+  WineData: any = [];
   displayedColumns: any[] = [
     '$key',
-    'book_name',
-    'author_name',
-    'publication_date',
-    'in_stock',
-    'action',
+    'supplier_name',
+    'product_name',
+    'cases',
+    'bottles_per_case',
+    'retail_cost_per_case',
+    'retail_cost_per_bottle',
+    'rating_type',
+    'available',
   ];
 
   constructor(private wineApi: WineService) {
     this.wineApi
-      .GetBookList()
+      .GetWineList()
       .snapshotChanges()
-      .subscribe((books) => {
-        books.forEach((item) => {
+      .subscribe((wines) => {
+        wines.forEach((item) => {
           let a = item.payload.toJSON();
           a['$key'] = item.key;
-          this.BookData.push(a as Wine);
+          this.WineData.push(a as Wine);
         });
         /* Data table */
-        this.dataSource = new MatTableDataSource(this.BookData);
+        this.dataSource = new MatTableDataSource(this.WineData);
         /* Pagination */
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
@@ -42,7 +45,7 @@ export class WineListComponent {
   }
 
   /* Delete */
-  deleteBook(index: number, e) {
+  deleteWine(index: number, e) {
     if (window.confirm('Are you sure?')) {
       const data = this.dataSource.data;
       data.splice(
@@ -50,7 +53,7 @@ export class WineListComponent {
         1
       );
       this.dataSource.data = data;
-      this.wineApi.DeleteBook(e.$key);
+      this.wineApi.DeleteWine(e.$key);
     }
   }
 }

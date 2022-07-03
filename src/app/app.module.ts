@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddBookComponent } from './components/add-book/add-book.component';
+import { AddWineComponent } from './components/add-wine/add-wine.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
 import { WineListComponent } from './components/wine-list/wine-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +27,7 @@ export function playerFactory(): any {
 @NgModule({
   declarations: [
     AppComponent,
-    AddBookComponent,
+    AddWineComponent,
     EditBookComponent,
     WineListComponent,
     FoundBallComponent,

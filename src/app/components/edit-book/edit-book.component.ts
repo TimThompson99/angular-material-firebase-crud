@@ -40,13 +40,13 @@ export class EditBookComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private location: Location,
-    private bookApi: WineService,
+    private wineApi: WineService,
     private actRoute: ActivatedRoute,
     private router: Router
   ) {
     var id = this.actRoute.snapshot.paramMap.get('id');
-    this.bookApi
-      .GetBook(id)
+    this.wineApi
+      .GetWine(id)
       .valueChanges()
       .subscribe((data) => {
         this.languageArray = data.languages;
@@ -111,7 +111,7 @@ export class EditBookComponent implements OnInit {
   updateBook() {
     var id = this.actRoute.snapshot.paramMap.get('id');
     if (window.confirm('Are you sure you wanna update?')) {
-      this.bookApi.UpdateBook(id, this.editBookForm.value);
+      this.wineApi.UpdateWine(id, this.editBookForm.value);
       this.router.navigate(['books-list']);
     }
   }

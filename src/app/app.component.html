@@ -1,6 +1,8 @@
   
 <!-- Toolbar -->
 <mat-toolbar color="primary" class="header">
+  <span>Broken Corks</span>
+  <div class="spacer"></div>
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
@@ -11,6 +13,7 @@
   <mat-sidenav
     #sidenav
     [mode]="'over'"
+    [position]="'end'"
     [(opened)]="opened"
     [fixedInViewport]="true"
     [fixedTopGap]> 
