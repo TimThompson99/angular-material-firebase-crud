@@ -18,6 +18,9 @@ import { FoundBallComponent } from './components/found-ball/found-ball.component
 import { LottieModule } from 'ngx-lottie';
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/dialogs/login/login.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+
 
 export function playerFactory(): any {
   return import('lottie-web')
@@ -32,9 +35,11 @@ export function playerFactory(): any {
     WineListComponent,
     FoundBallComponent,
     HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    GoogleMapsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,

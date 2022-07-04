@@ -19,7 +19,7 @@ export class WineService {
 
   constructor(private db: AngularFireDatabase) {}
 
-  /* Create book */
+  /* Add Wine */
   AddWine(wine: Wine) {
     this.winesRef
       .push({
@@ -39,19 +39,19 @@ export class WineService {
       });
   }
 
-  /* Get book */
+  /* Get Wine */
   GetWine(id: string) {
     this.wineRef = this.db.object('wine-list/' + id);
     return this.wineRef;
   }
 
-  /* Get book list */
+  /* Get Wine list */
   GetWineList() {
     this.winesRef = this.db.list('wine-list');
     return this.winesRef;
   }
 
-  /* Update book */
+  /* Update Wine */
   UpdateWine(id, wine: Wine) {
     this.wineRef
       .update({
@@ -62,7 +62,7 @@ export class WineService {
         cost_per_case: wine.cost_per_case,
         cost_per_bottle: wine.cost_per_bottle,
         retail_cost_per_case: wine.retail_cost_per_case,
-        retail_cost_per_bottle: wine.cost_per_bottle,
+        retail_cost_per_bottle: wine.retail_cost_per_bottle,
         rating_type: wine.rating_type,
         available: wine.available
       })

@@ -35,7 +35,7 @@ export class AddWineComponent implements OnInit {
 
   ngOnInit() {
     this.wineApi.GetWineList();
-    this.submitBookForm();
+    this.submitWineForm();
   }
 
   constructor(public fb: FormBuilder, private wineApi: WineService) {}
@@ -49,7 +49,7 @@ export class AddWineComponent implements OnInit {
   }
 
   /* Reactive book form */
-  submitBookForm() {
+  submitWineForm() {
     this.wineForm = this.fb.group({ 
       supplier_name: ['', [Validators.required]],
       product_name: ['', [Validators.required]],
@@ -93,7 +93,7 @@ export class AddWineComponent implements OnInit {
   }
 
   /* Submit book */
-  submitBook() {
+  submitWine() {
     if (this.wineForm.valid) {
       this.wineApi.AddWine(this.wineForm.value);
       this.resetForm();

@@ -1,0 +1,24 @@
+<section>
+  <mat-tab-group (selectedTabChange)="selectedTabChange($event)" class="full-width">
+    <mat-tab *ngIf="!isResetPassword" label="Login"></mat-tab>
+    <mat-tab *ngIf="!isResetPassword" label="Register"></mat-tab>
+    <mat-tab *ngIf="isResetPassword" label="Reset Password"></mat-tab>
+  </mat-tab-group>
+  <form class="full-width" autocomplete="off" [formGroup]="form" (ngSubmit)="loginEmail()">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email" type="email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!isResetPassword" class="full-width">
+      <input matInput placeholder="Password" type="password" formControlName="password">
+    </mat-form-field>
+
+    <div class="buttons-row full-width">
+      <div *ngIf="isResetPassword || isNewUser" class="spacer"></div>
+      <button mat-button type="button" *ngIf="!isResetPassword && !isNewUser" class="text-link" (click)="showResetPasswordForm()">forgot password?</button>
+      <button mat-button type="button" (click)="cancelAction()">CANCEL</button>
+      <button *ngIf="!isResetPassword" mat-raised-button type="submit" [disabled]="!form.valid">{{ isNewUser ? "REGISTER" : "LOGIN" }}</button>
+      <button *ngIf="isResetPassword" mat-raised-button type="button" [disabled]="!form.valid" (click)="resetPassword()">RESET</button>
+    </div>
+  </form>
+</section>

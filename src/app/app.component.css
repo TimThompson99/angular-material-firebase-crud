@@ -1,0 +1,12 @@
+.header {
+
+}
+.inner-toolbar {
+    display: flex;
+    width: 100%;
+    max-width: 1920px;
+}
+.toolbar-title {
+    font-weight: 800;
+    text-transform: uppercase;
+}

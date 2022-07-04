@@ -1,15 +1,16 @@
 import { Wine } from '../../shared/wine';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { WineService } from '../../shared/wine.service';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-wine-list',
   templateUrl: './wine-list.component.html',
   styleUrls: ['./wine-list.component.css'],
 })
-export class WineListComponent {
+export class WineListComponent implements OnInit {
   dataSource: MatTableDataSource<Wine>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   WineData: any = [];
@@ -23,9 +24,13 @@ export class WineListComponent {
     'retail_cost_per_bottle',
     'rating_type',
     'available',
+    'action'
   ];
+  userDetails: any;
+  isAdmin: boolean;
+  showLoading: boolean = true;
 
-  constructor(private wineApi: WineService) {
+  constructor(private wineApi: WineService, private authService: AuthService) {
     this.wineApi
       .GetWineList()
       .snapshotChanges()
@@ -44,16 +49,27 @@ export class WineListComponent {
       });
   }
 
+  ngOnInit() {
+    this.authService.currentUserDetails.subscribe(user => {
+      this.userDetails = user;
+      if (user) {
+        this.showLoading = false;
+      }
+    })
+  }  
+
   /* Delete */
   deleteWine(index: number, e) {
-    if (window.confirm('Are you sure?')) {
-      const data = this.dataSource.data;
-      data.splice(
-        this.paginator.pageIndex * this.paginator.pageSize + index,
-        1
-      );
-      this.dataSource.data = data;
-      this.wineApi.DeleteWine(e.$key);
+    if (this.userDetails) {
+      if (window.confirm('Are you sure?')) {
+        const data = this.dataSource.data;
+        data.splice(
+          this.paginator.pageIndex * this.paginator.pageSize + index,
+          1
+        );
+        this.dataSource.data = data;
+        this.wineApi.DeleteWine(e.$key);
+      }
     }
   }
 }

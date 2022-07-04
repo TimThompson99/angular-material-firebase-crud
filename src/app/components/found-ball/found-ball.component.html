@@ -1,5 +1,5 @@
 <section>
-    <mat-card>
+    <mat-card *ngIf="ballId === 'todd'">
     <mat-card-header>
       <div mat-card-avatar class="avatar todd"></div>
       <mat-card-title>Todd</mat-card-title>
@@ -12,14 +12,14 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Found My Ball</button>
+      <button mat-button (click)="showMapsForm()">Found My Ball</button>
     </mat-card-actions>
   </mat-card>
 
-  <mat-card>
+  <mat-card *ngIf="ballId === 'leanne'">
     <mat-card-header>
       <div mat-card-avatar class="avatar leanne"></div>
-      <mat-card-title>Jer</mat-card-title>
+      <mat-card-title>Leanne</mat-card-title>
       <mat-card-subtitle>"Ace"</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="assets/LeanneOne.jpg" alt="More Hole-in-ones than Todd">
@@ -29,11 +29,11 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Found My Ball</button>
+      <button mat-button (click)="showMapsForm()">Found My Ball</button>
     </mat-card-actions>
   </mat-card>    
 
-  <mat-card>
+  <mat-card *ngIf="ballId == 'jer'">
     <mat-card-header>
       <div mat-card-avatar class="avatar jer"></div>
       <mat-card-title>Jer</mat-card-title>
@@ -44,11 +44,11 @@
       <p>Chances are I don't like you, and thats okay.</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Found My Ball</button>
+      <button mat-button (click)="showMapsForm()">Found My Ball</button>
     </mat-card-actions>
   </mat-card>
 
-  <mat-card>
+  <mat-card *ngIf="ballId == 'kierst'">
     <mat-card-header>
       <div mat-card-avatar class="avatar kierst"></div>
       <mat-card-title>Kierst</mat-card-title>
@@ -59,8 +59,31 @@
       <p>Don't threaten me with a good time</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Found My Ball</button>
+      <button mat-button (click)="showMapsForm()">Found My Ball</button>
     </mat-card-actions>
   </mat-card>
+
+  <div class="maps-dialog" *ngIf="apiLoaded | async" [class.hide]="!showMap">
+    <div>
+      <label>Enter address</label>
+      <input
+        type="text"
+        class="my-search-box"
+        (keydown.enter)="$event.preventDefault()"
+        placeholder="Search Location"
+        type="text"
+        #search
+      />
+    </div>
+
+    <google-map   #myGoogleMap
+    height="500px"
+    width="100%"
+    [zoom]="zoom"
+    [center]="center"
+    [options]="options"></google-map>
+    <button mat-button type="button" (click)="cancelLocation()">CANCEL</button>
+    <button color="primary" mat-raised-button type="button" (click)="saveLocation()" *ngIf="showSaveButton">SAVE</button>
+  </div>
 
 </section>
